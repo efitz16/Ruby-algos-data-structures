@@ -1,5 +1,4 @@
-class OutOfBoundsException < StandardError
-end
+require_relative "../out_of_bounds_exception"
 
 class FixedArray
 	attr_reader :array

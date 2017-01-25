@@ -1,3 +1,5 @@
+require_relative "../out_of_bounds_exception"
+
 class ArrayList
   attr_reader :array
 
