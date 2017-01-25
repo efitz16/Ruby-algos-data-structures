@@ -13,6 +13,9 @@ class ArrayList
     return element
   end
 
+  def get(index)
+  end
+
   # def size
   # 	self.array.length
   # end
