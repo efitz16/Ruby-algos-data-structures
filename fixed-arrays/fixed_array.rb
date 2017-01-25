@@ -1,5 +1,4 @@
-class OutOfBoundsException < StandardError
-end
+require_relative "out_of_bounds_exception"
 
 class FixedArray
 	attr_reader :array
@@ -23,4 +22,7 @@ class FixedArray
   def check_bounds(index)
   	raise OutOfBoundsException, "Out of bounds" if index > self.array.size
   end
+
+  private
+  attr_writer :array
 end
