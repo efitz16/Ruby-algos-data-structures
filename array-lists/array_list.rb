@@ -27,6 +27,22 @@ class ArrayList
     self.array_list.set(index, element)
   end
 
+  def insert(index, element)
+    new_arr = FixedArray.new(self.length + 1)
+
+    for i in 0..index-1
+      new_arr.set(i, self.array_list.get(i))
+    end
+
+    new_arr.set(index, element)
+
+    for i in index+1..self.length
+      new_arr.set(i, self.array_list.get(i-1))
+    end
+
+    self.array_list = new_arr
+   end
+
   private
   attr_writer :array_list
 end
