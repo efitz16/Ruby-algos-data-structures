@@ -19,6 +19,7 @@ class FixedArray
     self.array[index] = element
   end
 
+  private
   def check_bounds(index)
   	raise OutOfBoundsException, "Out of bounds" if index > self.array.size
   end
