@@ -1,41 +1,32 @@
-require_relative "../out_of_bounds_exception"
+require_relative "../fixed-arrays/fixed_array"
 
 class ArrayList
-  attr_reader :array
+  attr_reader :array_list
 
   def initialize(size)
-    @array = Array.new(size)
-  end
-
-  def add(element)
-    self.array = Array.new(self.array.length + 1)
-
-    self.array[self.array.length - 1] = element
-
-    return element
-  end
-
-  def get(index)
-    check_bounds(index)
-
-    self.array[index]
-  end
-
-  def set(index, element)
-    check_bounds(index)
-
-    self.array[index] = element
+    @array_list = FixedArray.new(size)
   end
 
   def length
-  	self.array.size
+    self.array_list.array.size
+  end
+
+  def add(element)
+    self.array_list = FixedArray.new(self.length + 1)
+
+    self.array_list.array[-1] = element
+
+    element
+  end
+
+  def get(index)
+    self.array_list.get(index)
+  end
+
+  def set(index, element)
+    self.array_list.set(index, element)
   end
 
   private
-  attr_writer :array
-
-  def check_bounds(index)
-    raise OutOfBoundsException, "Out of bounds" if index > self.array.size
-  end
-
+  attr_writer :array_list
 end
