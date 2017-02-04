@@ -34,7 +34,7 @@ Implement and write RSpec tests for the `Node` class, supporting the following i
 ### Interface
 - `Node#new(element)`: Instantiate a new node containing `element`
 - `Node#insert_after(other_node)`: Insert `other_node` after this node. In other words, `other_node` becomes the node that this instance _points to_.
-- `Node#remove_after()`: Remove the node that this node points to (aka the node "after" this node)
+- `Node#remove_after`: Remove the node that this node points to (aka the node "after" this node)
 
 ## Release 1: Implement `LinkedList`
 
