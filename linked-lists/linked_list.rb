@@ -4,13 +4,14 @@ class LinkedList
   attr_reader :first, :last
 
   def initialize
-  	@front = nil
-  	@back = nil
+  	@first = nil
+  	@last = nil
   end
 
   def insert_first(element)
   	if self.first == nil
   	  self.first = element
+      self.last = element
   	else
   	  element.insert_after(self.first)
   	  self.first = element
@@ -19,29 +20,49 @@ class LinkedList
 
   def remove_first
     if self.first != nil
+      self.last = nil if self.first.next == nil
   	  self.first = self.first.next
-      
     end
   end
 
   def insert_last(element)
   	if self.last == nil
   	  self.last = element
+      self.first = element
   	else
   	  self.last.insert_after(element) 
   	  self.last = element
+    end
   end
 
   def remove_last
   	if self.last != nil
-       ptr = self.first
 
-       until prt.next == self.last
-         ptr = ptr.next
-       end
+      if self.first == self.last
+        self.first = nil
+        self.last = nil
+      else
+        ptr = self.first
 
-       self.last = ptr
+        until ptr.next == self.last
+          ptr = ptr.next
+        end
+
+        self.last = ptr
+      end
   	end
+  end
+
+  def get(index)
+  end
+
+  def set(index, element)
+  end
+
+  def insert(index, element)
+  end
+
+  def size
   end
 
   private
