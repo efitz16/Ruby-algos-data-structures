@@ -93,11 +93,7 @@ class LinkedList
         count += 1
       end
 
-      # if pointer.next == last
-        
-      # else
-        new_node.insert_after(pointer.next)
-      # end
+      new_node.insert_after(pointer.next)
 
       pointer.insert_after(new_node)
     end
