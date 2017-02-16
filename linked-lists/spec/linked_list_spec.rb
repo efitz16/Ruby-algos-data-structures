@@ -78,6 +78,18 @@ describe LinkedList do
 	  end
 	end
 
+	describe '#get' do
+      it 'gets the node at the index given' do
+      	list.insert_last(node2)
+	    list.insert_last(node3)
+	    list.insert_last(node1)
+
+	    expect(list.get(0)).to be node2
+	    expect(list.get(1)).to be node3
+	    expect(list.get(2)).to be node1
+      end
+	end
+
 	describe '#size' do
 	  it 'counts the size of the empty list' do
 	  	expect(list.size).to be 0
@@ -87,7 +99,6 @@ describe LinkedList do
 	    list.insert_last(node2)
 	    list.insert_last(node3)
 	    list.insert_last(node1)
-	    # binding.pry
 	  	expect(list.size).to be 3
 	  end
     end

@@ -54,16 +54,15 @@ class LinkedList
   end
 
   def get(index)
-    # if first == nil
-    #   count = 0
-    # else
       pointer = first
       count = 0
 
-      # until count == index
-      
-    # end
+      until count == index
+        pointer = pointer.next
+        count += 1
+      end
 
+      pointer
   end
 
   def set(index, element)
