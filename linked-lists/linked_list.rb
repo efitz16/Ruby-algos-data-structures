@@ -54,6 +54,15 @@ class LinkedList
   end
 
   def get(index)
+    # if first == nil
+    #   count = 0
+    # else
+      pointer = first
+      count = 0
+
+      # until count == index
+      
+    # end
 
   end
 
@@ -64,11 +73,9 @@ class LinkedList
   end
 
   def size
-    ptr = first
-
-    if first == nil
-      count = 0
-    else
+    count = 0
+    if first != nil
+      ptr = first
       count = 1
 
       until ptr == self.last do
