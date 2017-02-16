@@ -1,4 +1,5 @@
 require_relative "../linked_list"
+require 'pry'
 
 describe LinkedList do
 	let (:list) { LinkedList.new }
@@ -76,5 +77,19 @@ describe LinkedList do
 	  	expect(list.first.next).to be node3
 	  end
 	end
+
+	describe '#size' do
+	  it 'counts the size of the empty list' do
+	  	expect(list.size).to be 0
+	  end
+
+	  it 'counts the size of the list with nodes' do
+	    list.insert_last(node2)
+	    list.insert_last(node3)
+	    list.insert_last(node1)
+	    # binding.pry
+	  	expect(list.size).to be 3
+	  end
+    end
 
 end

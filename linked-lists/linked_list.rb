@@ -54,6 +54,7 @@ class LinkedList
   end
 
   def get(index)
+
   end
 
   def set(index, element)
@@ -63,6 +64,20 @@ class LinkedList
   end
 
   def size
+    ptr = first
+
+    if first == nil
+      count = 0
+    else
+      count = 1
+
+      until ptr == self.last do
+        ptr = ptr.next
+        count += 1
+      end
+    end
+
+    count
   end
 
   private
