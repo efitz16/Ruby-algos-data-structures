@@ -1,5 +1,4 @@
 require_relative "../linked_list"
-require 'pry'
 
 describe LinkedList do
 	let (:list) { LinkedList.new }
@@ -95,9 +94,16 @@ describe LinkedList do
 	    list.remove_first
 	    expect(list.get(0)).to be node3
       end
+
+      it "should raise an error if try to retrieve index that's out-of-bounds" do
+		expect { list.get(787) }.to raise_exception(OutOfBoundsException)
+	  end
 	end
 
 	describe '#set' do
+	  it "should raise an error if try to set an index that's out-of-bounds" do
+	    expect { list.set(787, "l") }.to raise_exception(OutOfBoundsException)
+	  end
 	  it 'changes the value of the node at the index given' do
 
 	  	list.insert_first(node2)
@@ -115,6 +121,9 @@ describe LinkedList do
 	end
 
 	describe '#insert' do
+	  it "should raise an error if try to insert into index that's out-of-bounds" do
+	    expect { list.insert(787, "meow") }.to raise_exception(OutOfBoundsException)
+	  end
 	  it 'inserts new nodes at the index given' do
 	  	list.insert_first(node2)
 	    list.insert_last(node3)

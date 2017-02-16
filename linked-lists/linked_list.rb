@@ -1,4 +1,5 @@
 require_relative "node.rb"
+require_relative "../fixed-arrays/out_of_bounds_exception.rb"
 
 class LinkedList
   attr_reader :first, :last
@@ -55,6 +56,8 @@ class LinkedList
   end
 
   def get(index)
+    raise OutOfBoundsException, "Out of bounds" if index >= self.size
+    
     pointer = first
     count = 0
 
@@ -67,6 +70,8 @@ class LinkedList
   end
 
   def set(index, element)
+    raise OutOfBoundsException, "Out of bounds" if index >= self.size
+
     pointer = first
     count = 0
 
@@ -79,6 +84,8 @@ class LinkedList
   end
 
   def insert(index, element)
+    raise OutOfBoundsException, "Out of bounds" if index > self.size
+
     new_node = Node.new(element)
 
     if index == 0
@@ -96,6 +103,8 @@ class LinkedList
       new_node.insert_after(pointer.next)
 
       pointer.insert_after(new_node)
+
+      self.last = new_node if index == self.size
     end
   end
 
@@ -117,12 +126,3 @@ class LinkedList
   private
   attr_writer :first, :last
 end
-
-# list = LinkedList.new
-# node1 = Node.new("a")
-# node2 = Node.new("b")
-# node3 = Node.new("c")
-
-#         list.insert_last(node2)
-#       list.insert_last(node3)
-#       list.insert_last(node1)
