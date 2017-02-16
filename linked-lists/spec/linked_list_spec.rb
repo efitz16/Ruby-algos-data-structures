@@ -75,6 +75,7 @@ describe LinkedList do
 	  	expect(list.first).to be node2
 	  	expect(list.last).to be node3
 	  	expect(list.first.next).to be node3
+	  	expect(list.last.next).to be nil
 	  end
 	end
 
@@ -87,7 +88,49 @@ describe LinkedList do
 	    expect(list.get(0)).to be node2
 	    expect(list.get(1)).to be node3
 	    expect(list.get(2)).to be node1
+
+	    list.remove_last
+	    expect(list.get(1)).to be node3
+
+	    list.remove_first
+	    expect(list.get(0)).to be node3
       end
+	end
+
+	describe '#set' do
+	  it 'changes the value of the node at the index given' do
+
+	  	list.insert_first(node2)
+	    list.insert_last(node3)
+	    list.insert_last(node1)
+
+	    expect{list.set(0, "k")}.to change{ node2.element }.from("b").to("k")
+	    expect(list.first).to be node2
+
+	    list.remove_last
+
+	    expect{list.set(1, 78)}.to change{ node3.element }.from("c").to(78)
+	    expect(list.last).to be node3
+	  end
+	end
+
+	describe '#insert' do
+	  it 'inserts new nodes at the index given' do
+	  	list.insert_first(node2)
+	    list.insert_last(node3)
+	    list.insert_last(node1)
+
+	    list.insert(1, "hello")
+	    expect(list.get(1).element).to eq "hello"
+	    expect(list.get(1).next).to be node3
+
+	    list.insert(3, 33)
+	    expect(list.get(3).element).to eq 33
+	    expect(list.get(3).next).to be node1
+	    expect(list.get(4)).to be node1
+	    expect(list.last).to be node1
+	    expect(list.size).to eq 5
+	  end
 	end
 
 	describe '#size' do

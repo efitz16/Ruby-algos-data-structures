@@ -49,26 +49,58 @@ class LinkedList
         end
 
         self.last = ptr
+        self.last.remove_after
       end
   	end
   end
 
   def get(index)
+    pointer = first
+    count = 0
+
+    until count == index
+      pointer = pointer.next
+      count += 1
+    end
+
+    pointer
+  end
+
+  def set(index, element)
+    pointer = first
+    count = 0
+
+    until count == index
+      pointer = pointer.next
+      count += 1
+    end
+
+    pointer.element = element
+  end
+
+  def insert(index, element)
+    new_node = Node.new(element)
+
+    if index == 0
+      new_node.insert_after(self.first)
+      self.first = new_node
+    else
       pointer = first
       count = 0
-
-      until count == index
+  
+      until count == index - 1
         pointer = pointer.next
         count += 1
       end
 
-      pointer
-  end
+      # if pointer.next == last
+        
+      # else
+        new_node.insert_after(pointer.next)
+      # end
 
-  def set(index, element)
-  end
-
-  def insert(index, element)
+      pointer.insert_after(new_node)
+    end
   end
 
   def size
@@ -89,3 +121,12 @@ class LinkedList
   private
   attr_writer :first, :last
 end
+
+# list = LinkedList.new
+# node1 = Node.new("a")
+# node2 = Node.new("b")
+# node3 = Node.new("c")
+
+#         list.insert_last(node2)
+#       list.insert_last(node3)
+#       list.insert_last(node1)

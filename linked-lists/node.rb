@@ -1,5 +1,6 @@
 class Node
   attr_reader :next
+  attr_accessor :element
 
   def initialize(element)
   	@element = element
