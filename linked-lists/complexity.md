@@ -38,4 +38,4 @@ O(n) -- Since this method *must* go through every element in the list, as the li
 
 ## Why is inserting a value into a LinkedList potentially faster than inserting a value into an ArrayList?
 
-
+A LinkedList can dynamically expand and contract. To insert an element in the middle of the list, one only needs to traverse through half the LinkedList. An ArrayList, by comparison, must be traversed entirely as the elements are copied into the new, exanded ArrayList, since ArrayLists do not dynamiclly expand or contract.
