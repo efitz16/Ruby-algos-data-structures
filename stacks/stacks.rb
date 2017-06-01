@@ -24,6 +24,7 @@ class Stack
 
   def empty?
   	return true if self.stack.size == 0
+    false
   end
 
   private
