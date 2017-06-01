@@ -42,8 +42,10 @@ class LinkedList
   	if self.last != nil
 
       if self.first == self.last
+        # item = self.last
         self.first = nil
         self.last = nil
+        # item
       else
         ptr = self.first
 
@@ -51,8 +53,12 @@ class LinkedList
           ptr = ptr.next
         end
 
+        # item = self.last
+
         self.last = ptr
         self.last.remove_after
+
+        # item
       end
   	end
   end

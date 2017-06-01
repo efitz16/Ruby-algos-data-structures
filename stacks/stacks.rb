@@ -5,7 +5,7 @@ class Stack
   attr_reader :stack
 
   def initialize
-  	@stack = ArrayList.new(1)
+  	@stack = LinkedList.new
   end
 
   def push(element)
@@ -13,7 +13,9 @@ class Stack
   end
 
   def pop
-  	self.stack.remove_last
+  	removed = self.top
+  	self.stack.remove_first
+  	removed
   end
 
   def top

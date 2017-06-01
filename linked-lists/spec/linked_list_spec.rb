@@ -1,5 +1,4 @@
 require_relative "../linked_list"
-require 'pry'
 
 describe LinkedList do
 	let (:list) { LinkedList.new }
