@@ -10,12 +10,13 @@ class LinkedList
   end
 
   def insert_first(element)
+    node = Node.new(element)
   	if self.first == nil
-  	  self.first = element
-      self.last = element
+  	  self.first = node
+      self.last = node
   	else
-  	  element.insert_after(self.first)
-  	  self.first = element
+  	  node.insert_after(self.first)
+  	  self.first = node
   	end
   end
 
@@ -27,12 +28,13 @@ class LinkedList
   end
 
   def insert_last(element)
+    node = Node.new(element)
   	if self.last == nil
-  	  self.last = element
-      self.first = element
+  	  self.last = node
+      self.first = node
   	else
-  	  self.last.insert_after(element) 
-  	  self.last = element
+  	  self.last.insert_after(node) 
+  	  self.last = node
     end
   end
 
@@ -40,8 +42,10 @@ class LinkedList
   	if self.last != nil
 
       if self.first == self.last
+        # item = self.last
         self.first = nil
         self.last = nil
+        # item
       else
         ptr = self.first
 
@@ -49,8 +53,12 @@ class LinkedList
           ptr = ptr.next
         end
 
+        # item = self.last
+
         self.last = ptr
         self.last.remove_after
+
+        # item
       end
   	end
   end

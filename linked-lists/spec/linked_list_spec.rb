@@ -2,26 +2,26 @@ require_relative "../linked_list"
 
 describe LinkedList do
 	let (:list) { LinkedList.new }
-	let(:node1) { Node.new("a") }
-	let(:node2) { Node.new("b") }
-	let(:node3) { Node.new("c") }
+	let(:node1) { "a" }
+	let(:node2) { "b" }
+	let(:node3) { "c" }
 
 	it 'instantiates an LinkedList object' do
 		expect(list).to be_an_instance_of(LinkedList)
 	end
 
 	describe '#insert_first' do
-		it 'adds the given node to the front of an empty list' do
+		it 'adds the given element to the front of an empty list' do
 		  list.insert_first(node1)
-		  expect(list.first).to be node1
-		  expect(list.last).to be node1
+		  expect(list.first.element).to be node1
+		  expect(list.last.element).to be node1
 		end
 
-		it 'adds the given node to the front of a non-empty list' do
+		it 'adds the given element to the front of a non-empty list' do
 		  list.insert_first(node1)
 		  list.insert_first(node2)
-		  expect(list.first).to be node2
-		  expect(list.last).to be node1
+		  expect(list.first.element).to be node2
+		  expect(list.last.element).to be node1
 		end
 	end
 
@@ -37,24 +37,24 @@ describe LinkedList do
 		  list.insert_first(node1)
 		  list.insert_first(node2)
 		  list.remove_first
-		  expect(list.first).to be node1
-		  expect(list.last).to be node1
+		  expect(list.first.element).to be node1
+		  expect(list.last.element).to be node1
 		end
 	end
 
 	describe '#insert_last' do
-	  it 'inserts a node at the end of an empty list' do
+	  it 'inserts an element at the end of an empty list' do
 	  	list.insert_last(node1)
-	  	expect(list.last).to be node1
-	  	expect(list.first).to be node1
+	  	expect(list.last.element).to be node1
+	  	expect(list.first.element).to be node1
 	  end
-	  it 'inserts a node at the end of a list with items' do
+	  it 'inserts an element at the end of a list with items' do
 	  	list.insert_last(node1)
 	  	list.insert_last(node2)
 	  	list.insert_last(node3)
-	  	expect(list.last).to be node3
-	  	expect(list.first).to be node1
-	  	expect(node1.next).to be node2
+	  	expect(list.last.element).to be node3
+	  	expect(list.first.element).to be node1
+	  	expect(list.first.next.element).to be node2
 	  end
 	end
 
@@ -71,9 +71,9 @@ describe LinkedList do
 	    list.insert_last(node3)
 	    list.insert_last(node1)
 	  	list.remove_last
-	  	expect(list.first).to be node2
-	  	expect(list.last).to be node3
-	  	expect(list.first.next).to be node3
+	  	expect(list.first.element).to be node2
+	  	expect(list.last.element).to be node3
+	  	expect(list.first.next.element).to be node3
 	  	expect(list.last.next).to be nil
 	  end
 	end
@@ -84,15 +84,15 @@ describe LinkedList do
 	    list.insert_last(node3)
 	    list.insert_last(node1)
 
-	    expect(list.get(0)).to be node2
-	    expect(list.get(1)).to be node3
-	    expect(list.get(2)).to be node1
+	    expect(list.get(0).element).to be node2
+	    expect(list.get(1).element).to be node3
+	    expect(list.get(2).element).to be node1
 
 	    list.remove_last
-	    expect(list.get(1)).to be node3
+	    expect(list.get(1).element).to be node3
 
 	    list.remove_first
-	    expect(list.get(0)).to be node3
+	    expect(list.get(0).element).to be node3
       end
 
       it "should raise an error if try to retrieve index that's out-of-bounds" do
@@ -109,14 +109,17 @@ describe LinkedList do
 	  	list.insert_first(node2)
 	    list.insert_last(node3)
 	    list.insert_last(node1)
+	    original_first_node = list.first 
+	    original_second_node = list.first.next
+	    original_last_node = list.last
 
-	    expect{list.set(0, "k")}.to change{ node2.element }.from("b").to("k")
-	    expect(list.first).to be node2
+	    expect{ list.set(0, "k") }.to change{ list.get(0).element }.from("b").to("k")
+	    expect(list.first).to be original_first_node
 
 	    list.remove_last
 
-	    expect{list.set(1, 78)}.to change{ node3.element }.from("c").to(78)
-	    expect(list.last).to be node3
+	    expect{list.set(1, 78)}.to change{ list.get(1).element }.from("c").to(78)
+	    expect(list.last).to be original_second_node
 	  end
 	end
 
@@ -128,16 +131,19 @@ describe LinkedList do
 	  	list.insert_first(node2)
 	    list.insert_last(node3)
 	    list.insert_last(node1)
+	    original_first_node = list.first 
+	    original_second_node = list.first.next
+	    original_last_node = list.last
 
 	    list.insert(1, "hello")
 	    expect(list.get(1).element).to eq "hello"
-	    expect(list.get(1).next).to be node3
+	    expect(list.get(1).next).to be original_second_node
 
 	    list.insert(3, 33)
 	    expect(list.get(3).element).to eq 33
-	    expect(list.get(3).next).to be node1
-	    expect(list.get(4)).to be node1
-	    expect(list.last).to be node1
+	    expect(list.get(3).next).to be original_last_node
+	    expect(list.get(4)).to be original_last_node
+	    expect(list.last).to be original_last_node
 	    expect(list.size).to eq 5
 	  end
 	end
