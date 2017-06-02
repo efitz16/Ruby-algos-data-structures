@@ -16,7 +16,7 @@ class TreeNode
   	while count < 2 do
   	 if children.get(count) == nil
        children.set(count, child)
-       return
+       return child
   	 end
   	 count += 1
   	end
