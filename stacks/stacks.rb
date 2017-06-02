@@ -9,12 +9,12 @@ class Stack
   end
 
   def push(element)
-  	self.stack.insert_first(element)
+  	stack.insert_first(element)
   end
 
   def pop
   	removed = self.top
-  	self.stack.remove_first
+  	stack.remove_first
   	removed
   end
 
