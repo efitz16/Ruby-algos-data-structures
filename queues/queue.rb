@@ -1,4 +1,6 @@
-class Queue
+require_relative "../linked-lists/linked_list.rb"
+
+class MyQueue
   attr_reader :queue
   def initialize
   	@queue = LinkedList.new
